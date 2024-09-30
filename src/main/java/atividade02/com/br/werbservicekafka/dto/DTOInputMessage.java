@@ -1,13 +1,24 @@
 package atividade02.com.br.werbservicekafka.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
 public class DTOInputMessage {
-    String message;
+    List<String> messages;
     Integer priorityLevel;
+
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
+    }
+
+    public Integer getPriorityLevel() {
+        return priorityLevel;
+    }
+
+    public void setPriorityLevel(Integer priorityLevel) {
+        this.priorityLevel = priorityLevel;
+    }
 }
