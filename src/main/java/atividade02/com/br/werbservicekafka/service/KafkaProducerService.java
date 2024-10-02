@@ -8,52 +8,52 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaProducerService {
 
-
-    private final KafkaTemplate<String, String> highPriorityKafkaTemplate;
-    private final KafkaTemplate<String, String> mediumPriorityKafkaTemplate;
-    private final KafkaTemplate<String, String> lowPriorityKafkaTemplate;
+//
+//    private final KafkaTemplate<String, String> highPriorityKafkaTemplate;
+//    private final KafkaTemplate<String, String> mediumPriorityKafkaTemplate;
+//    private final KafkaTemplate<String, String> lowPriorityKafkaTemplate;
+//
+//    @Autowired
+//    public KafkaProducerService(
+//            KafkaTemplate<String, String> highPriorityKafkaTemplate,
+//            KafkaTemplate<String, String> mediumPriorityKafkaTemplate,
+//            KafkaTemplate<String, String> lowPriorityKafkaTemplate) {
+//        this.highPriorityKafkaTemplate = highPriorityKafkaTemplate;
+//        this.mediumPriorityKafkaTemplate = mediumPriorityKafkaTemplate;
+//        this.lowPriorityKafkaTemplate = lowPriorityKafkaTemplate;
+//    }
+//
+//    public void sendMessage(DTOInputMessage dtoInputMessage) {
+//        switch (dtoInputMessage.getPriorityLevel()) {
+//            case 1: // Alta prioridade
+//                dtoInputMessage.getMessages().forEach(message ->
+//                        highPriorityKafkaTemplate.send("school-kafka", message)
+//                );
+//                break;
+//            case 2: // Média prioridade
+//                dtoInputMessage.getMessages().forEach(message ->
+//                        mediumPriorityKafkaTemplate.send("school-kafka", message)
+//                );
+//                break;
+//            case 3: // Baixa prioridade
+//                dtoInputMessage.getMessages().forEach(message ->
+//                        lowPriorityKafkaTemplate.send("school-kafka", message)
+//                );
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Priority level must be 1 (high), 2 (medium), or 3 (low).");
+//        }
+//    }
+    private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
-    public KafkaProducerService(
-            KafkaTemplate<String, String> highPriorityKafkaTemplate,
-            KafkaTemplate<String, String> mediumPriorityKafkaTemplate,
-            KafkaTemplate<String, String> lowPriorityKafkaTemplate) {
-        this.highPriorityKafkaTemplate = highPriorityKafkaTemplate;
-        this.mediumPriorityKafkaTemplate = mediumPriorityKafkaTemplate;
-        this.lowPriorityKafkaTemplate = lowPriorityKafkaTemplate;
+    public KafkaProducerService(KafkaTemplate<String, String> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
     }
 
     public void sendMessage(DTOInputMessage dtoInputMessage) {
-        switch (dtoInputMessage.getPriorityLevel()) {
-            case 1: // Alta prioridade
-                dtoInputMessage.getMessages().forEach(message ->
-                        highPriorityKafkaTemplate.send("school-kafka", message)
-                );
-                break;
-            case 2: // Média prioridade
-                dtoInputMessage.getMessages().forEach(message ->
-                        mediumPriorityKafkaTemplate.send("school-kafka", message)
-                );
-                break;
-            case 3: // Baixa prioridade
-                dtoInputMessage.getMessages().forEach(message ->
-                        lowPriorityKafkaTemplate.send("school-kafka", message)
-                );
-                break;
-            default:
-                throw new IllegalArgumentException("Priority level must be 1 (high), 2 (medium), or 3 (low).");
-        }
+        kafkaTemplate.send("school-kafka", dtoInputMessage.getMessages().get(0));
     }
-//    private final KafkaTemplate<String, String> kafkaTemplate;
-//
-//    @Autowired
-//    public KafkaProducerService(KafkaTemplate<String, String> kafkaTemplate) {
-//        this.kafkaTemplate = kafkaTemplate;
-//    }
-//
-//    public void sendMenssage(DTOInputMessage dtoInputMessage) {
-//        kafkaTemplate.send("school-kafka", dtoInputMessage.getMessage());
-//    }
 
 //    private final KafkaTemplate<String, String> highPriorityKafkaTemplate;
 //    private final KafkaTemplate<String, String> mediumPriorityKafkaTemplate;
