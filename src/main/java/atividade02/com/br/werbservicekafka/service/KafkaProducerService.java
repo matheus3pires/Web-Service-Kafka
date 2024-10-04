@@ -52,7 +52,7 @@ public class KafkaProducerService {
     }
 
     public void sendMessage(DTOInputMessage dtoInputMessage) {
-        kafkaTemplate.send("school-kafka", dtoInputMessage.getMessages().get(0));
+        kafkaTemplate.send("school-kafka", dtoInputMessage.getMessage());
     }
 
 //    private final KafkaTemplate<String, String> highPriorityKafkaTemplate;

@@ -1,17 +1,20 @@
 package atividade02.com.br.werbservicekafka.dto;
 
-import java.util.List;
-
 public class DTOInputMessage {
-    List<String> messages;
+    String message;
     Integer priorityLevel;
 
-    public List<String> getMessages() {
-        return messages;
+    public DTOInputMessage(String message, Integer priorityLevel) {
+        this.message = message;
+        this.priorityLevel = priorityLevel;
     }
 
-    public void setMessages(List<String> messages) {
-        this.messages = messages;
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Integer getPriorityLevel() {
