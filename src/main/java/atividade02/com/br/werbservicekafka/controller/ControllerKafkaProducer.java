@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/producer")
-@CrossOrigin(origins = "http://127.0.0.1:5501") // Permitir CORS para essa origem
+@CrossOrigin(origins = "http://127.0.0.1:5500") // Permitir CORS para essa origem
 public class ControllerKafkaProducer {
 
     private final KafkaProducerService kafkaProducerService;
@@ -23,7 +23,7 @@ public class ControllerKafkaProducer {
     public ResponseEntity<DTOInputMessage> sendMessage(
             @RequestBody DTOInputMessage dtoInputMessage
     ) {
-        //kafkaProducerService.sendMessage(dtoInputMessage);
+        kafkaProducerService.sendMessage(dtoInputMessage);
         return ResponseEntity.status(HttpStatus.CREATED).body(new DTOInputMessage("Mensagem enviada com sucesso!", dtoInputMessage.getPriorityLevel()));
     }
 
