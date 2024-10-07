@@ -1,5 +1,8 @@
 package atividade02.com.br.werbservicekafka.dto;
 
+import lombok.Getter;
+
+@Getter
 public class DTOInputMessage {
     String message;
     Integer priorityLevel;
