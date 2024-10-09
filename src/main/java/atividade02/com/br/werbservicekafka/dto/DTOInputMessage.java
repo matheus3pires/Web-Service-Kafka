@@ -11,20 +11,4 @@ public class DTOInputMessage {
         this.message = message;
         this.priorityLevel = priorityLevel;
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Integer getPriorityLevel() {
-        return priorityLevel;
-    }
-
-    public void setPriorityLevel(Integer priorityLevel) {
-        this.priorityLevel = priorityLevel;
-    }
 }
